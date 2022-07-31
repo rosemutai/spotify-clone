@@ -11,7 +11,7 @@ const SideBar = () => {
                 icon={faSpotify}
                 className="text-gray-50 w-12 h-12"   
             />
-            <h2 className="text-gray-50 font-bold text-2xl md:text-center md:mt-3 md:ml-1">Spotify</h2>
+            <h2 className="text-gray-50 font-bold text-xl md:text-center md:mt-3 md:ml-1">Spotify</h2>
         </div>
 
         <div className="second-row md:mt-10 md:h-28 md:flex md:flex-col md:justify-between">
