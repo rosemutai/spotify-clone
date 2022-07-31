@@ -7,8 +7,8 @@ import {
 
 const NavBar = () => {
   return (
-    <div className="bg-zinc-900 md:row-start-1 md:row-end-2 md:col-start-2 md:col-end-13 md:flex md:justify-between
-        md:items-center">
+    <div className="bg-zinc-900 md:row-start-1 md:row-end-2 md:col-start-3 md:col-end-13 md:flex md:justify-between
+        md:items-center py-3">
         <div className="md:flex">
             <FontAwesomeIcon
                 icon={faAngleLeft}
@@ -24,7 +24,7 @@ const NavBar = () => {
             <button className="signup-btn text-gray-300 font-semibold md:mr-9
                 hover:text-white hover:font-bold">Sign Up</button>
             <button className="login-btn text-black font-bold bg-white
-            rounded-tl-full rounded-bl-full rounded-tr-full rounded-br-full py-3 px-8 md:mr-4">Log in</button>
+            rounded-tl-full rounded-bl-full rounded-tr-full rounded-br-full py-3 px-8 md:mr-8">Log in</button>
         </div>
     </div>
   )
