@@ -12,7 +12,7 @@ const NavBar = () => {
         <div className="md:flex">
             <FontAwesomeIcon
                 icon={faAngleLeft}
-                className="w-10 h-10 text-gray-50 bg-black p-2 rounded-full md:ml-5"
+                className="w-10 h-10 text-gray-50 bg-black/70 p-2 rounded-full md:ml-5"
             />
             <FontAwesomeIcon
                 icon={faAngleRight}
