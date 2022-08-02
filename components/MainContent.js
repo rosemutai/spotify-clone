@@ -17,6 +17,15 @@ import xx from '../public/images/xx.jpg'
 import zz from '../public/images/zz.jpg'
 import tt from '../public/images/tt.jpg'
 
+export async function getServerSideProps (){
+  const request = await fetch('https://api.spotify.com/v1/tracks/2TpxZ7JUBn3uw46aR7qd6V')
+  const songs = request.json()
+  console.log(songs)
+  return {
+    props: { songs }
+  }
+}
+
 const MainContent = () => {
   return (
     <div className="bg-neutral-800 md:row-start-2 md:row-end-7 md:col-start-3 md:col-end-13 md:ml-24">
