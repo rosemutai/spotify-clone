@@ -8,9 +8,12 @@ module.exports = {
     extend: {
       spacing: {
         '10%': '10%',
-        '47%': '47%',
+        '40%': '40%',
       }
     },
+    borderWidth: {
+      DEFAULT: '1px',
+    }
   },
   plugins: [],
 }
