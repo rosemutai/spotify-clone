@@ -4,28 +4,61 @@ import {
   faAngleRight,
 
 } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
+import rose from '../public/images/rose.jpg'
 
 const NavBar = () => {
   return (
-    <div className="bg-zinc-900 md:row-start-1 md:row-end-2 md:col-start-3 md:col-end-13 md:flex md:justify-between
-        md:items-center py-3">
-        <div className="md:flex">
-            <FontAwesomeIcon
-                icon={faAngleLeft}
-                className="w-10 h-10 text-gray-50 bg-black/70 p-2 rounded-full md:ml-5"
-            />
-            <FontAwesomeIcon
-                icon={faAngleRight}
-                className="w-10 h-10 text-gray-200 bg-black p-2 rounded-full md:ml-3"
-            />
-        </div>
+    <div className="grid">
+      <div className="bg-zinc-900 md:row-start-1 md:row-end-2 md:col-start-3 md:col-end-13 md:flex md:justify-between
+          md:items-center py-3">
+            
+          <div className="md:flex">
+              <FontAwesomeIcon
+                  icon={faAngleLeft}
+                  className="w-4 h-4 p-2 text-gray-50 bg-black/50  rounded-full md:ml-20"
+              />
+              <FontAwesomeIcon
+                  icon={faAngleRight}
+                  className="w-4 h-4 p-2 text-gray-200 bg-black/50 rounded-full md:ml-3"
+              />
+          </div>
 
-        <div className="sign-btns">
-            <button className="signup-btn text-gray-300 font-semibold md:mr-9
-                hover:text-white hover:font-bold">Sign Up</button>
-            <button className="login-btn text-black font-bold bg-white
-            rounded-tl-full rounded-bl-full rounded-tr-full rounded-br-full py-3 px-8 md:mr-8">Log in</button>
-        </div>
+          <div className="sign-btns md:flex md:justify-between">
+              {/* <button className="signup-btn text-gray-300 font-semibold md:mr-9
+                  hover:text-white hover:font-bold">Sign Up</button> */}
+            <button className="login-btn text-white font-semibold
+                rounded-tl-full rounded-bl-full rounded-tr-full rounded-br-full py-1 px-4 md:mr-4
+                border border-gray-400">Upgrade
+            </button>
+           <button id="dropdownMenuButton1" data-bs-toggle="dropdown" className="bg-black w-36 text-white md:mr-3 rounded-tl-full rounded-bl-full
+            rounded-tr-full rounded-br-full flex dropdown-toggle ">   
+             <Image
+              src={rose}
+              alt="rose mutai"
+              width={30}
+              height={30}
+              className="rounded-full"
+            />
+            <h5 className="md:ml-2">rosemutai</h5>
+            <svg
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fas"
+              data-icon="caret-down"
+              className="w-3 ml-2 md:mt-1"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 320 512"
+            >
+              <path
+                fill="currentColor"
+                d="M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z"
+              ></path>
+            </svg>
+           </button>
+          </div>
+      </div>
     </div>
   )
 }
