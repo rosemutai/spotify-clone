@@ -41,7 +41,7 @@ const MainContent = ({songs}) => {
     <div className="grid">
       <div className="bg-neutral-800 md:row-start-2 md:row-end-7 md:col-start-3 md:col-end-13 md:ml-32">
           <div className="editor-title md:flex md:justify-between">
-              <h2 className="text-gray-50 text-2xl font-bold md:ml-24 md:my-6">Editors Picks</h2>
+              <h2 className="text-gray-50 text-2xl font-bold md:ml-24 md:my-6">Made For rosemutai</h2>
               <a className="text-gray-300 text-sm font-semibold md:mt-6 md:mr-10">SEE ALL</a>
           </div>
 
