@@ -6,6 +6,7 @@ import styles from '../styles/Home.module.css'
 const Footer = () => {
   return (
     <div className="grid">
+      
       <div className="md:flex md:justify-between md:items-center md:pl-64 bg-neutral-800 border-solid border-t-8 border-t-gray-400 w-full md:h-24
         bottom-0 right-0 md:fixed md:py-2 md:mr-3">
           <div></div>
@@ -68,12 +69,12 @@ const Footer = () => {
                     className="text-gray-400"
                   />
             </div>
-            <div className="volume md:flex md:justify-between mr-11">
+            <div className="volume md:flex md:justify-between md:mt-1 md:mr-6">
               <FontAwesomeIcon
                     icon={faVolumeMute}
                     className="text-gray-400"
               />
-              <div className="w-8 bg-gray-500/80 rounded-full h-1.5 md:mt-1.5"></div>
+              <div className="w-16 ml-1 bg-gray-50 rounded-full h-1 md:mt-1.5"></div>
             </div>
               
           </div>
