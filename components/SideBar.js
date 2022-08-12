@@ -61,7 +61,7 @@ const SideBar = () => {
 
             </div>
 
-            <div className="last-row  text-gray-50 md:mt-40 md:h-12 md:flex md:flex-col md:justify-between">
+            <div className="last-row  text-gray-50 md:mt-32 md:h-12 md:flex md:flex-col md:justify-between">
                 <p className="text-gray-400 text-sm font-light">Cookies</p>
                 <p className="text-gray-400 text-sm font-light">Privacy</p>
             </div>
