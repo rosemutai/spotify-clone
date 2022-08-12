@@ -1,3 +1,4 @@
+import Script from 'next/script'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleLeft,
@@ -10,6 +11,12 @@ import rose from '../public/images/rose.jpg'
 const NavBar = () => {
   return (
     <div className="grid">
+      <Script 
+        src="../node_modules/tw-elements/dist/js/index.min.js"
+        strategy="lazyOnload"
+        onLoad={() =>
+          console.log("script loaded correctly, window has been populated")}
+      />
       <div className="bg-zinc-900 md:row-start-1 md:row-end-2 md:col-start-3 md:col-end-13 md:flex md:justify-between
           md:items-center py-3">
             
@@ -57,6 +64,57 @@ const NavBar = () => {
               ></path>
             </svg>
            </button>
+
+           <ul
+              className="dropdown-menu min-w-max absolute bg-white text-base z-50 float-left py-2 list-none
+              text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none"
+              aria-labelledby="dropdownMenuButton1"
+            >
+            <li>
+              <a className="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent      
+                text-gray-700 hover:bg-gray-100" href="#">Action
+              </a> 
+            </li>
+            <li>
+              <a
+                className="
+                  dropdown-item text-sm py-2
+                  
+                  
+                  px-4
+                  font-normal
+                  block
+                  w-full
+                  whitespace-nowrap
+                  bg-transparent
+                  text-gray-700
+                  hover:bg-gray-100
+                "
+                href="#"
+                >Another action</a
+              >
+            </li>
+            <li>
+              <a
+                className="
+                  dropdown-item
+                  text-sm
+                  py-2
+                  px-4
+                  font-normal
+                  block
+                  w-full
+                  whitespace-nowrap
+                  bg-transparent
+                  text-gray-700
+                  hover:bg-gray-100
+                "
+                href="#"
+                >Something else here</a
+              >
+            </li>
+          </ul>
+          
           </div>
       </div>
     </div>
