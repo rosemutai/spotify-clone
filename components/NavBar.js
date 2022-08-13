@@ -12,10 +12,7 @@ const NavBar = () => {
   return (
     <div className="grid">
       <Script 
-        src="../node_modules/tw-elements/dist/js/index.min.js"
-        strategy="lazyOnload"
-        onLoad={() =>
-          console.log("script loaded correctly, window has been populated")}
+        src="../node_modules/tw-elements/dist/js/index.min.js" 
       />
       <div className="bg-zinc-900 md:row-start-1 md:row-end-2 md:col-start-3 md:col-end-13 md:flex md:justify-between
           md:items-center py-3">
