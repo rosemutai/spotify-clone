@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import querystring from 'querystring';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import aa from '../public/images/aa.jpg'
@@ -17,24 +18,65 @@ import xx from '../public/images/xx.jpg'
 import zz from '../public/images/zz.jpg'
 import tt from '../public/images/tt.jpg'
 
-export async function  getServerSideProps(){
+  const client_id = process.env.CLIENT_ID
+  const client_secret = process.env.CLIENT_SECRET
+  const refresh_token = process.env.REFRESH_TOKEN
+   const myPlaylistEndPoint = 'https://api.spotify.com/v1/me/playlists'
 
-  const clientId = 'd48dc77dc89a44e3961f481bcba14025'
-  const clientSecret = '239a9b88f8384292af484b4ba481d413'
-  const request = await fetch('https://api.spotify.com/v1/albums', {
-    headers: {
-      'Content-Type': 'application/json'
-    },
-  })
-  
-  const songs = request.json()
-  console.log(songs)
-  return {
-    props: { songs }
+  const basic = Buffer.from(`${client_id}: ${client_secret}`).toString('base64')
+  const token_endpoint = `https://accounts.spotify.com/api/token`;
+
+
+  const getAccessToken = async () =>{
+    const response = await fetch(token_endpoint, {
+      method: 'POST',
+      headers: {
+        Authorization: `Basic ${basic}`,
+        'Content-Type': 'application/x-www-form-urlencoded'
+
+      },
+      body: querystring.stringify({
+        grant_type: 'refresh_token',
+        refresh_token
+      })
+    })
+    return response.json()
+
   }
-}
 
-const MainContent = ({songs}) => {
+  const getMyPlaylists = async () =>{
+    const accessToken = await getAccessToken()
+
+    return fetch(myPlaylistEndPoint, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+
+      }
+    })
+  }
+
+const playListsFunc =  async (_, res) => {
+  const response = await getMyPlaylists();
+  const { items } = await response.json();
+
+
+
+  const playlists = items.slice(0, 10).map((playlist) => ({
+    artist: playlist.artists.map((_artist) => _artist.name).join(', '),
+    songUrl: playlist.external_urls.spotify,
+    title: playlist.name
+  }));
+
+  return res.status(200).json({ playlists });
+};
+
+console.log(playListsFunc())
+
+
+
+
+
+const MainContent = () => {
 
   // console.log(songs)
   return (
