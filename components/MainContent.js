@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import querystring from 'querystring';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import aa from '../public/images/aa.jpg'
@@ -17,60 +16,63 @@ import sauti from '../public/images/sauti.jpg'
 import xx from '../public/images/xx.jpg'
 import zz from '../public/images/zz.jpg'
 import tt from '../public/images/tt.jpg'
-
+import { getServerSideProps } from '../pages/api/playlists'
   const client_id = process.env.CLIENT_ID
   const client_secret = process.env.CLIENT_SECRET
   const refresh_token = process.env.REFRESH_TOKEN
-   const myPlaylistEndPoint = 'https://api.spotify.com/v1/me/playlists'
+   
 
   const basic = Buffer.from(`${client_id}: ${client_secret}`).toString('base64')
   const token_endpoint = `https://accounts.spotify.com/api/token`;
 
 
-  const getAccessToken = async () =>{
-    const response = await fetch(token_endpoint, {
-      method: 'POST',
-      headers: {
-        Authorization: `Basic ${basic}`,
-        'Content-Type': 'application/x-www-form-urlencoded'
+  // const getAccessToken = async () =>{
+  //   const response = await fetch(token_endpoint, {
+  //     method: 'POST',
+  //     headers: {
+  //       Authorization: `Basic ${basic}`,
+  //       'Content-Type': 'application/x-www-form-urlencoded'
 
-      },
-      body: querystring.stringify({
-        grant_type: 'refresh_token',
-        refresh_token
-      })
-    })
-    return response.json()
+  //     },
+  //     body: {
+  //       grant_type: 'refresh_token',
+  //       refresh_token
+  //     }
+  //   })
+  //   return response.json()
 
-  }
+  // }
 
-  const getMyPlaylists = async () =>{
-    const accessToken = await getAccessToken()
+  // const getMyPlaylists = async () =>{
+  //   const accessToken = await getAccessToken()
 
-    return fetch(myPlaylistEndPoint, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
+  //   return (getServerSideProps())
+  // }
 
-      }
-    })
-  }
+// const playListsFunc =  async (_, res) => {
+//   const response = await getMyPlaylists();
+//   const { items } = await response.json();
 
-const playListsFunc =  async (_, res) => {
-  const response = await getMyPlaylists();
-  const { items } = await response.json();
+//   if(items){
+//     const playlists = items.slice(0, 10).map((playlist) => ({
+//     artist: playlist.artists.map((_artist) => _artist.name).join(', '),
+//     songUrl: playlist.external_urls.spotify,
+//     title: playlist.name
+//     }));
 
+//     return res.status(200).json({ playlists });
 
+//   }
 
-  const playlists = items.slice(0, 10).map((playlist) => ({
-    artist: playlist.artists.map((_artist) => _artist.name).join(', '),
-    songUrl: playlist.external_urls.spotify,
-    title: playlist.name
-  }));
+//   else{
+//     console.log("no items to display")
+//   }
 
-  return res.status(200).json({ playlists });
-};
+  
+  
+// };
 
-console.log(playListsFunc())
+// console.log(playListsFunc())
 
 
 
@@ -82,12 +84,12 @@ const MainContent = () => {
   return (
     <div className="grid">
       <div className="bg-neutral-800 md:row-start-2 md:row-end-7 md:col-start-3 md:col-end-13 md:ml-32">
-          <div className="editor-title md:flex md:justify-between">
-              <h2 className="text-gray-50 text-2xl font-bold md:ml-24 md:my-6">Made For rosemutai</h2>
+          <div className="editor-title flex justify-between">
+              <h2 className="text-gray-50 text-2xl font-bold md:ml-24 my-6">Made For rosemutai</h2>
               <a className="text-gray-300 text-sm font-semibold md:mt-6 md:mr-10">SEE ALL</a>
           </div>
 
-          <div className="first-row-music-cards md:flex md:justify-center md:px-4 ">
+          <div className="first-row-music-cards flex md:justify-center md:ml-14 ">
               <div className="card w-48 h-80 p-3 bg-neutral-700/20 rounded-md md:mr-5 hover:bg-neutral-700/80
                 transition-opacity hover:ease-linear relative group ">
                   
@@ -181,15 +183,15 @@ const MainContent = () => {
               </div>
           </div>
 
-          <div className="editor-title md:flex md:justify-between">
+          <div className="editor-title flex justify-between">
               <div className="editor-title md:flex md:flex-col">
-                <h2 className="text-gray-50 text-2xl font-bold md:ml-24 md:mt-8 ">Focus</h2>
+                <h2 className="text-gray-50 text-2xl font-bold md:ml-24 mt-8 ">Focus</h2>
                 <p className="text-gray-400  md:mt-3 md:ml-24">Music to help you concentrate</p>
               </div>
               <a className="text-gray-300 text-sm font-semibold md:mt-6 md:mr-10">SEE ALL</a>
           </div>
 
-          <div className="second-row-music-cards md:flex md:justify-center md:px-4 md:mt-5">
+          <div className="second-row-music-cards flex md:justify-center md:ml-14 md:mt-5">
               <div className="card w-48 h-80 p-3 bg-neutral-700/20 rounded-md md:mr-5 hover:bg-neutral-700/80
                 transition-opacity hover:ease-linear relative group ">
                   
@@ -283,12 +285,12 @@ const MainContent = () => {
               </div>
           </div>
 
-            <div className="editor-title md:flex md:justify-between">
-                <h2 className="text-gray-50 text-2xl font-bold md:ml-24 md:mt-8 ">Popular releases</h2>
+            <div className="editor-title flex justify-between">
+                <h2 className="text-gray-50 text-2xl font-bold md:ml-24 mt-8 ">Popular releases</h2>
                 <a className="text-gray-300 text-sm font-semibold md:mt-6 md:mr-10">SEE ALL</a>
             </div>
 
-          <div className="third-row-music-cards md:flex md:justify-center md:px-4 md:mt-5">
+          <div className="third-row-music-cards flex md:justify-center md:ml-14 md:mt-5">
               <div className="card w-48 h-80 p-3 bg-neutral-700/20 rounded-md md:mr-5 hover:bg-neutral-700/80
                 transition-opacity hover:ease-linear relative group ">
                   
